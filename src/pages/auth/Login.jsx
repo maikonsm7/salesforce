@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 import logo from '/logo.svg'
 import { Footer } from '../../components/Footer'
 import { Link } from 'react-router-dom'
@@ -7,14 +8,16 @@ export const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showpass, setShowPass] = useState(false)
+    const { login } = useContext(AuthContext)
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(email, password)
+        await login(email, password)
     }
     return (
         <>
             <main className="form-signin w-100 m-auto mt-4">
+                
                 <form onSubmit={handleSubmit}>
                     <img className="mb-4 d-flex m-auto" src={logo} alt="" width="50"/>
                     <div className="form-floating">
