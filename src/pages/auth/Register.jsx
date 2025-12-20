@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Footer } from '../../components/Footer'
 import { Link } from 'react-router-dom'
 import MaskedInput from '../../components/MaskedInput'
+import { AuthContext } from '../../context/AuthContext'
+import { Message } from '../../components/Message'
 
 export const Register = () => {
     const [name, setName] = useState("")
@@ -10,14 +12,20 @@ export const Register = () => {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [showpass, setShowPass] = useState(false)
+    const { register } = useContext(AuthContext)
 
-    const handleSubmit = e => {
+    const cleanString = txt => txt.replace(/[^a-zA-Z0-9]/g, '')
+
+    const handleSubmit = async e => {
         e.preventDefault()
-        console.log(email, password)
+        const newCnpj = cleanString(cnpj)
+        const newPhone = cleanString(phone)
+        await register({name, cnpj: newCnpj, email, phone: newPhone, password})
     }
     return (
         <>
-            <main className="form-register w-100 m-auto mt-4">
+            <main className="form-container m-auto mt-4">
+                <Message />
                 <form onSubmit={handleSubmit}>
                     <h3 className='text-center'>Cadastro</h3>
 

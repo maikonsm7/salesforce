@@ -11,7 +11,7 @@ export const Recovery = () => {
     }
     return (
         <>
-            <main className="form-recovery w-100 m-auto mt-4">
+            <main className="form-container m-auto mt-4">
                 <form onSubmit={handleSubmit}>
                     <h3 className='text-center'>Recuperação de senha</h3>
                     <div className='form-text mt-3'>
