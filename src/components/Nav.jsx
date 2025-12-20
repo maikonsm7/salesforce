@@ -20,6 +20,7 @@ export const Nav = () => {
             <li className="nav-item"><NavLink className="nav-link" to="/users"><i className="bi bi-person me-2"></i>Usuários</NavLink></li>
           )}
           
+          <li className="nav-item"><NavLink className="nav-link" to="/clients"><i className="bi bi-people me-2"></i>Clientes</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link" to="/productions"><i className="bi bi-journal-check me-2"></i>Production</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link" to="/dashboard"><i className="bi bi-speedometer2 me-2"></i>Dashboard</NavLink></li>
 

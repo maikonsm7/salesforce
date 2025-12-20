@@ -9,12 +9,12 @@ export const UpdateUser = () => {
     const { update, getById } = useUser()
 
     useEffect(() => {
-        const loadUser = async () => {
+        const loadData = async () => {
             const data = await getById(id)
             setName(data.name)
             setEmail(data.email)
         }
-        loadUser()
+        loadData()
     }, [])
 
     const handleSubmit = e => {
