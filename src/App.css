@@ -17,6 +17,11 @@ input[type="checkbox"]:focus {
   padding: 1rem;
 }
 
+.form-production {
+  max-width: 550px;
+  padding: 1rem;
+}
+
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
@@ -33,7 +38,7 @@ input[type="checkbox"]:focus {
   border-top-right-radius: 0;
 }
 
-.form-container input {
+.form-container input, .form-production input {
   margin-bottom: 10px;
 }
 
@@ -68,4 +73,9 @@ input[type="checkbox"]:focus {
 .success {
   background-color: rgb(202, 255, 189);
   color: rgb(17, 100, 0);
+}
+
+.logged-user{
+  font-size: 10pt;
+  color: yellow;
 }

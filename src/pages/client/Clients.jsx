@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import useClient from "../../hooks/useClient"
 import { Link } from "react-router"
+import useClient from "../../hooks/useClient"
+import { applyMask } from "../../helpers/general"
 
 export const Clients = () => {
     const [clients, setClients] = useState([])
@@ -46,9 +47,10 @@ export const Clients = () => {
                                         <tr key={client.id}>
                                             <td>{index + 1}</td>
                                             <td>{client.name}</td>
-                                            <td>{client.phone}</td>
+                                            <td>{applyMask(client.phone, "(##) #####-####")}</td>
                                             <td>
                                                 <div className="d-flex justify-content-around">
+                                                    <Link className="nav-link" to={`/clients/${client.id}`}><i className="bi bi-eye"></i></Link>
                                                     <Link className="nav-link" to={`/clients/update/${client.id}`}><i className="bi bi-pencil"></i></Link>
                                                 </div>
                                             </td>

@@ -5,11 +5,14 @@ import { Link } from "react-router"
 export const CreateUser = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [loading, setLoading] = useState(false)
     const { create } = useUser()
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        create({ name, email })
+        setLoading(true)
+        await create({ name, email })
+        setLoading(false)
     }
 
     return (
@@ -41,7 +44,9 @@ export const CreateUser = () => {
                         />
                         <label htmlFor="name">Email</label>
                     </div>
-                    <button className="btn btn-info w-100 mt-2" type="submit">Cadastrar</button>
+                    <button className="btn btn-info w-100 mt-2" type="submit">
+                        {loading ? 'Cadastrando...' : 'Cadastrar'}
+                    </button>
                 </form>
             </main>
             <div className="mt-3 text-center">

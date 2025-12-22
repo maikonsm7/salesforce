@@ -5,6 +5,8 @@ import useUser from "../../hooks/useUser"
 export const UpdateUser = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [active, setActive] = useState("true")
+    const [loading, setLoading] = useState(false)
     const { id } = useParams()
     const { update, getById } = useUser()
 
@@ -13,13 +15,16 @@ export const UpdateUser = () => {
             const data = await getById(id)
             setName(data.name)
             setEmail(data.email)
+            setActive(data.active)
         }
         loadData()
     }, [])
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        update({ name, email }, id)
+        setLoading(true)
+        await update({ name, email, active }, id)
+        setLoading(false)
     }
 
     return (
@@ -51,7 +56,18 @@ export const UpdateUser = () => {
                         />
                         <label htmlFor="name">Email</label>
                     </div>
-                    <button className="btn btn-info w-100 mt-2" type="submit">Atualizar</button>
+
+                    <div className="row">
+                        <label htmlFor="active" className="col col-form-label">Usuário Ativo ?</label>
+                        <div className="col-sm-7">
+                            <select className="form-select" id="active" name="active" value={active} onChange={e => setActive(e.target.value)}>
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button className="btn btn-info w-100 mt-4" type="submit">{loading ? 'Atualizando...' : 'Atualizar'}</button>
                 </form>
             </main>
 

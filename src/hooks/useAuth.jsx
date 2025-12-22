@@ -22,8 +22,8 @@ function useAuth() {
     const register = async (enterprise) => {
         try {
             const data = await api.post('/auth/register', { ...enterprise }).then(res => res.data)
-            setFlashMessage(data.message, 'success')
             navigate('/')
+            setFlashMessage(data.message, 'success')
         } catch (error) {
             setFlashMessage(error.response.data.message, 'danger')
         }
@@ -47,7 +47,7 @@ function useAuth() {
         login,
         register,
         recovery,
-        logout
+        logout,
     }
 }
 

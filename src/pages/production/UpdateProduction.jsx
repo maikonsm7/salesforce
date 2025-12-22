@@ -1,64 +1,161 @@
 import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router"
 import useProduction from "../../hooks/useProduction"
 import useClient from "../../hooks/useClient"
-import { Link, useParams } from "react-router"
+import MaskedMoney from "../../components/MaskedMoney"
 
 export const UpdateProduction = () => {
     const [clients, setClients] = useState([])
-    const [clientId, setClientId] = useState("")
-    const [conta, setConta] = useState("")
+    const [production, setProduction] = useState({})
+    const [consignado, setConsignado] = useState('')
     const { id } = useParams()
-    const { getAll: getAllClients } = useClient()
-    const { getById, update } = useProduction()
+    const { getAll } = useClient()
+    const { update, getById } = useProduction()
 
     useEffect(() => {
         const loadData = async () => {
-            const clientsData = await getAllClients()
-            const productionData = await getById(id)
+            const [clientsData, productionData] = await Promise.all([
+                getAll(),
+                getById(id)
+            ])
             setClients(clientsData)
-            setConta(productionData.conta)
-            setClientId(productionData.clientId)
+            setProduction(productionData)
+            setConsignado(productionData.consignado)
         }
         loadData()
     }, [])
 
+    const handleProduction = e => setProduction(prev => ({...prev, [e.target.name]: e.target.value}))
+
     const handleSubmit = e => {
         e.preventDefault()
-        update({ conta, clientId }, id)
+        update({...production, consignado}, id)
     }
 
     return (
         <>
             <h3 className="text-center fw-normal">Atualizar Produção</h3>
 
-            <main className="m-auto form-container">
+            <main className="m-auto form-production">
                 <form onSubmit={handleSubmit}>
+                    <div className="border rounded-2 p-3">
 
-                    <div className="col">
-                        <label htmlFor="clientId" className="form-label">Cliente</label>
-                        <select className="form-select" id="clientId" name="clientId" value={clientId} onChange={e => setClientId(e.target.value)}>
-                            <option value="">Selecione</option>
-                            {clients.map(client => (
-                                <option key={client.id} value={client.id}>{client.name}</option>
-                            ))}
-                        </select>
+                        <div className="mb-3 row">
+                            <label htmlFor="clientId" className="col-sm-2 col-form-label">Cliente</label>
+                            <div className="col-sm-10">
+                                <select className="form-select" id="clientId" name="clientId" value={production.clientId || ''} onChange={handleProduction}>
+                                    <option value="">Selecione</option>
+                                    {clients.map(client => (
+                                        <option key={client.id} value={client.id}>{client.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="consignado" className="col col-form-label">Consignado</label>
+                                    <div className="col-sm-6">
+                                        <MaskedMoney 
+                                        className={"form-control"} 
+                                        id={"consignado"} 
+                                        name={"consignado"} 
+                                        value={consignado} 
+                                        onChange={setConsignado} 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="conta" className="col col-form-label pe-0">Abert. de Conta</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="conta"
+                                            name="conta"
+                                            value={production.conta || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="cartao" className="col col-form-label">Cartão</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="cartao"
+                                            name="cartao"
+                                            value={production.cartao || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="lime" className="col col-form-label">Lime</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="lime"
+                                            name="lime"
+                                            value={production.lime || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="chess" className="col col-form-label pe-0">Cheque Espec.</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="chess"
+                                            name="chess"
+                                            value={production.chess || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="microsseguro" className="col col-form-label">Microsseguro</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="microsseguro"
+                                            name="microsseguro"
+                                            value={production.microsseguro || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className="form-floating">
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="conta"
-                            placeholder="conta"
-                            value={conta}
-                            onChange={e => setConta(e.target.value)}
-                        />
-                        <label htmlFor="conta">Conta</label>
-                    </div>
-
-                    <button className="btn btn-info w-100 mt-2" type="submit">Atualizar</button>
+                    <button className="btn btn-info w-100 mt-3" type="submit">Atualizar</button>
                 </form>
             </main>
+            
             <div className="mt-3 text-center">
                 <Link className="link-info" to="/productions">Voltar</Link>
             </div>

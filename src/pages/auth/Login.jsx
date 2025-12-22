@@ -9,18 +9,22 @@ export const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showpass, setShowPass] = useState(false)
+    const [loading, setLoading] = useState(false)
     const { login } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         await login(email, password)
+        setLoading(false)
     }
     return (
         <>
             <main className="form-signin w-100 m-auto mt-4">
                 <Message />
-                <form onSubmit={handleSubmit}>
-                    <img className="mb-4 d-flex m-auto" src={logo} alt="" width="50"/>
+                <form onSubmit={handleSubmit} className='text-center'>
+                    <img className="mb-3" src={logo} alt="" width="50"/>
+                    <h1 className="h3 mb-3 fw-normal">Login</h1>
                     <div className="form-floating">
                         <input 
                         type="email" 
@@ -47,16 +51,19 @@ export const Login = () => {
                         </span>
                     </div>
                     <button className="btn btn-info w-100 py-2 mt-2" type="submit">
-                        Entrar
+                        {loading ? 'Entrando...' : 'Entrar'}
                     </button>
                 </form>
+
                 <div className='text-center mt-4'>
                 <Link to='/recovery' className='link-info'>Esqueci minha senha</Link>
                 </div>
                 <div className='text-center form-text mt-4'>
                 Ainda não possui cadastro? <Link to='/register' className='link-info'>Cadastrar-me</Link>
                 </div>
+
                 <Footer />
+
             </main>
         </>
     )

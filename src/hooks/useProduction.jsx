@@ -41,7 +41,15 @@ function useProduction() {
             navigate('/productions')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            console.log(error.response.data)
+            setFlashMessage(error.response.data.message, 'danger')
+        }
+    }
+    const remove = async (id) => {
+        try {
+            const data = await api.delete(`/productions/${id}`).then(res => res.data)
+            navigate('/productions')
+            setFlashMessage(data.message, 'success')
+        } catch (error) {
             setFlashMessage(error.response.data.message, 'danger')
         }
     }
@@ -51,6 +59,7 @@ function useProduction() {
         getById,
         create,
         update,
+        remove,
     }
 }
 

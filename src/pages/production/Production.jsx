@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router"
+import useProduction from "../../hooks/useProduction"
+import useAuth from "../../hooks/useAuth"
+import { dateHour } from "../../helpers/general"
+
+export const Production = () => {
+    const [production, setProduction] = useState({})
+    const [loading, setLoading] = useState(false)
+    const { id } = useParams()
+    const { user } = useAuth()
+    const { getById } = useProduction()
+
+    useEffect(() => {
+        const loadData = async () => {
+            setLoading(true)
+            const data = await getById(id)
+            setProduction(data)
+            setLoading(false)
+        }
+        loadData()
+    }, [])
+
+    return (
+        <>
+            <div className="m-auto" style={{ maxWidth: '630px' }}>
+
+                <h3 className="text-center fw-normal">Produção</h3>
+
+                {loading && (<p className="text-center mt-5">Carregando...</p>)}
+
+                {production && (<>
+                    <div className="card d-flex m-auto mt-4">
+                        <div className="card-header">
+                            Dados da Produção
+                        </div>
+                        <div className="card-body">
+                            <p><b className="me-2">Cliente:</b> {production.client?.name || ''}</p>
+                            {['MASTER', 'ADMIN'].includes(user.role) && (<>
+                                <p><b className="me-2">Inserida por:</b> {production.createdBy?.name || ''}</p>
+                            </>)}
+                            <p><b className="me-2">Data/Hora:</b> {dateHour(production.createdAt)}</p>
+                            <hr />
+
+                            <div className="row row-cols-1 row-cols-md-2 g-4">
+                                <div className="col">
+                                    <p><b className="me-2">Empréstimo Consignado:</b> {production.consignado}</p>
+                                    <p><b className="me-2">Abertura de conta:</b> {production.conta}</p>
+                                    <p><b className="me-2">Cartão de Cŕedito:</b> {production.cartao}</p>
+                                </div>
+
+                                <div className="col">
+                                    <p><b className="me-2">Lime:</b> {production.lime}</p>
+                                    <p><b className="me-2">Cheque Especial:</b> {production.chess}</p>
+                                    <p><b className="me-2">Microseguro:</b> {production.microsseguro}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </>)}
+
+                <div className="mt-3 text-center">
+                    <Link className="link-info" to="/productions">Voltar</Link>
+                </div>
+
+            </div>
+        </>
+    )
+}

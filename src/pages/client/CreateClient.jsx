@@ -1,17 +1,24 @@
 import { useState } from "react"
-import useClient from "../../hooks/useClient"
 import { Link } from "react-router"
+import useClient from "../../hooks/useClient"
+import MaskedInput from "../../components/MaskedInput"
+import { cleanString } from "../../helpers/general"
 
 export const CreateClient = () => {
     const [name, setName] = useState("")
     const [cpf, setCpf] = useState("")
     const [phone, setPhone] = useState("")
     const [observation, setObservation] = useState("")
+    const [loading, setLoading] = useState(false)
     const { create } = useClient()
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        create({ name, cpf, phone, observation })
+        const cleanCpf = cleanString(cpf)
+        const cleanPhone = cleanString(phone)
+        setLoading(true)
+        await create({ name, cpf: cleanCpf, phone: cleanPhone, observation })
+        setLoading(false)
     }
 
     return (
@@ -23,8 +30,9 @@ export const CreateClient = () => {
                     <div className="form-floating">
                         <input
                             type="text"
-                            className="form-control"
+                            name="name"
                             id="name"
+                            className="form-control"
                             placeholder="name"
                             value={name}
                             onChange={e => setName(e.target.value)}
@@ -33,42 +41,49 @@ export const CreateClient = () => {
                     </div>
 
                     <div className="form-floating">
-                        <input
-                            type="cpf"
-                            className="form-control"
-                            id="cpf"
-                            placeholder="cpf"
-                            value={cpf}
-                            onChange={e => setCpf(e.target.value)}
+                        <MaskedInput
+                        type="text" 
+                        name="cpf"
+                        className="form-control"
+                        placeholder="cpf" 
+                        maxLength={14} 
+                        mask="###.###.###-##" 
+                        value={cpf} 
+                        onChange={setCpf} 
                         />
                         <label htmlFor="cpf">CPF</label>
                     </div>
 
                     <div className="form-floating">
-                        <input
-                            type="phone"
-                            className="form-control"
-                            id="phone"
-                            placeholder="phone"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
+                        <MaskedInput
+                        type="text" 
+                        name="phone"
+                        id="phone"
+                        className="form-control" 
+                        placeholder="phone"
+                        maxLength={15} 
+                        mask="(##) #####-####" 
+                        value={phone} 
+                        onChange={setPhone} 
                         />
                         <label htmlFor="phone">Telefone</label>
                     </div>
 
                     <div className="form-floating">
-                        <input
-                            type="observation"
-                            className="form-control"
-                            id="observation"
-                            placeholder="observation"
-                            value={observation}
-                            onChange={e => setObservation(e.target.value)}
+                        <textarea 
+                        type="text" 
+                        className="form-control" 
+                        id="observation" 
+                        name="observation" 
+                        placeholder="observation"
+                        rows="3" 
+                        value={observation} 
+                        onChange={e => setObservation(e.target.value)} 
                         />
                         <label htmlFor="observation">Observação</label>
                     </div>
 
-                    <button className="btn btn-info w-100 mt-2" type="submit">Cadastrar</button>
+                    <button className="btn btn-info w-100 mt-2" type="submit">{loading ? 'Cadastrando...' : 'Cadastrar'}</button>
                 </form>
             </main>
             <div className="mt-3 text-center">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { applyMask } from '../helpers/maskInput';
+import { applyMask } from '../helpers/general';
 
 const MaskedInput = ({ ...props }) => {
   const [inputValue, setInputValue] = useState(applyMask(props.value || '', props.mask));

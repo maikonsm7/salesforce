@@ -1,26 +1,29 @@
-import { useState, useContext } from 'react'
-import { Footer } from '../../components/Footer'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Footer } from '../../components/Footer'
 import MaskedInput from '../../components/MaskedInput'
-import { AuthContext } from '../../context/AuthContext'
+import useAuth from '../../hooks/useAuth'
 import { Message } from '../../components/Message'
+import { cleanString } from '../../helpers/general'
 
 export const Register = () => {
     const [name, setName] = useState("")
+    const [nameUser, setNameUser] = useState("")
     const [cnpj, setCnpj] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [showpass, setShowPass] = useState(false)
-    const { register } = useContext(AuthContext)
-
-    const cleanString = txt => txt.replace(/[^a-zA-Z0-9]/g, '')
+    const [loading, setLoading] = useState(false)
+    const { register } = useAuth()
 
     const handleSubmit = async e => {
         e.preventDefault()
         const newCnpj = cleanString(cnpj)
         const newPhone = cleanString(phone)
-        await register({name, cnpj: newCnpj, email, phone: newPhone, password})
+        setLoading(true)
+        await register({name, nameUser, cnpj: newCnpj, email, phone: newPhone, password})
+        setLoading(false)
     }
     return (
         <>
@@ -39,6 +42,18 @@ export const Register = () => {
                         onChange={e => setName(e.target.value)}
                         />
                         <label htmlFor="name">Nome da Empresa</label>
+                    </div>
+
+                    <div className="form-floating">
+                        <input 
+                        type="text" 
+                        className="form-control" 
+                        id="nameUser" 
+                        placeholder="nameUser"
+                        value={nameUser}
+                        onChange={e => setNameUser(e.target.value)}
+                        />
+                        <label htmlFor="nameUser">Nome do usuário</label>
                     </div>
 
                     <div className="form-floating">
@@ -94,7 +109,7 @@ export const Register = () => {
                     </div>
                     <p className={`form-text ${password.length > 5 ? 'text-success' : 'text-danger'}`}><i className={`bi bi-${password.length > 5 ? 'check' : 'x'}`}></i> No mínimo 6 caracteres</p>
                     <button className="btn btn-info w-100 py-2" type="submit">
-                        Enviar
+                        {loading ? 'Enviando...': 'Enviar'}
                     </button>
                 </form>
                 <div className='text-center mt-4'>
