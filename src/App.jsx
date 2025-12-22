@@ -21,6 +21,7 @@ import { CreateProduction } from './pages/production/CreateProduction'
 import { UpdateProduction } from './pages/production/UpdateProduction'
 import { DeleteProduction } from './pages/production/DeleteProduction'
 import { Production } from './pages/production/Production'
+import { UpdatePassword } from './pages/auth/UpdatePassword'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                 <Route path='/productions/update/:id' element={<UpdateProduction />} />
                 <Route path='/productions/delete/:id' element={<DeleteProduction />} />
                 <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/profile/password-update' element={<UpdatePassword />} />
               </Route>
             </Route>
 

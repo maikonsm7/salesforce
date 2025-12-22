@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import useFlashMessage from "../hooks/useFlashMessage";
 import api from '../helpers/api'
+import { errorHandler } from "../helpers/error-handler";
 
 function useAuth() {
     const { user, loading, setUser } = useContext(AuthContext)
@@ -16,7 +17,7 @@ function useAuth() {
             localStorage.setItem('token', data.token)
             navigate('/home')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const register = async (enterprise) => {
@@ -25,7 +26,7 @@ function useAuth() {
             navigate('/')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const recovery = async (email) => {
@@ -33,7 +34,15 @@ function useAuth() {
             const data = await api.post('/auth/password-recover', { email }).then(res => res.data)
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
+        }
+    }
+    const updatePass = async (password, newPassword) => {
+        try {
+            const data = await api.patch('/auth/password-update', { password, newPassword }).then(res => res.data)
+            setFlashMessage(data.message, 'success')
+        } catch (error) {
+            errorHandler(error, setFlashMessage)
         }
     }
     const logout = () => {
@@ -47,6 +56,7 @@ function useAuth() {
         login,
         register,
         recovery,
+        updatePass,
         logout,
     }
 }

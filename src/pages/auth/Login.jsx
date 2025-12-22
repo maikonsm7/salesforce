@@ -21,29 +21,29 @@ export const Login = () => {
     return (
         <>
             <main className="form-signin w-100 m-auto mt-4">
-                <Message />
+            <Message />
                 <form onSubmit={handleSubmit} className='text-center'>
-                    <img className="mb-3" src={logo} alt="" width="50"/>
+                    <img className="mb-3" src={logo} alt="" width="50" />
                     <h1 className="h3 mb-3 fw-normal">Login</h1>
                     <div className="form-floating">
-                        <input 
-                        type="email" 
-                        className="form-control" 
-                        id="email" 
-                        placeholder="name@example.com"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        <input
+                            type="email"
+                            className="form-control"
+                            id="email"
+                            placeholder="name@example.com"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
                         <label htmlFor="email">Email</label>
                     </div>
                     <div className="form-floating">
-                        <input 
-                        type={showpass ? "text" : "password"} 
-                        className="form-control" 
-                        id="password" 
-                        placeholder="password" 
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        <input
+                            type={showpass ? "text" : "password"}
+                            className="form-control"
+                            id="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                         />
                         <label htmlFor="password">Senha</label>
                         <span className="position-absolute top-50 end-0 translate-middle-y me-3" style={{ cursor: "pointer" }} onClick={() => setShowPass(!showpass)}>
@@ -56,10 +56,10 @@ export const Login = () => {
                 </form>
 
                 <div className='text-center mt-4'>
-                <Link to='/recovery' className='link-info'>Esqueci minha senha</Link>
+                    <Link to='/recovery' className='link-info'>Esqueci minha senha</Link>
                 </div>
                 <div className='text-center form-text mt-4'>
-                Ainda não possui cadastro? <Link to='/register' className='link-info'>Cadastrar-me</Link>
+                    Ainda não possui cadastro? <Link to='/register' className='link-info'>Cadastrar-me</Link>
                 </div>
 
                 <Footer />

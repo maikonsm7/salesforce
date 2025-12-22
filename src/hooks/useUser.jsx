@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
 import api from '../helpers/api'
+import { errorHandler } from "../helpers/error-handler";
 
 function useUser() {
     const { setFlashMessage } = useFlashMessage()
@@ -11,7 +12,7 @@ function useUser() {
             const data = await api.get('/users').then(res => res.data)
             return data.users
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const getById = async (id) => {
@@ -19,7 +20,7 @@ function useUser() {
             const data = await api.get(`/users/${id}`).then(res => res.data)
             return data.user
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const create = async (user) => {
@@ -28,11 +29,7 @@ function useUser() {
             navigate('/users')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            // setFlashMessage(error.response.data, 'danger')
-            // console.log(error.response.data.errors)
-            if(error.response.data.errors){
-                setFlashMessage('Preencha todos os campos obrigatórios', 'danger')
-            }
+            errorHandler(error, setFlashMessage)
         }
     }
     const update = async (user, id) => {
@@ -41,7 +38,7 @@ function useUser() {
             navigate('/users')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
 

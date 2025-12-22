@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useFlashMessage from "./useFlashMessage";
 import api from '../helpers/api'
+import { errorHandler } from "../helpers/error-handler";
 
 function useProduction() {
     const { setFlashMessage } = useFlashMessage()
@@ -11,7 +12,7 @@ function useProduction() {
             const data = await api.get('/productions').then(res => res.data)
             return data.productions
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const getById = async (id) => {
@@ -19,7 +20,7 @@ function useProduction() {
             const data = await api.get(`/productions/${id}`).then(res => res.data)
             return data.production
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const create = async (production) => {
@@ -28,11 +29,7 @@ function useProduction() {
             navigate('/productions')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            // setFlashMessage(error.response.data, 'danger')
-            // console.log(error.response.data.errors)
-            if(error.response.data.errors){
-                setFlashMessage('Preencha todos os campos obrigatórios', 'danger')
-            }
+            errorHandler(error, setFlashMessage)
         }
     }
     const update = async (production, id) => {
@@ -41,7 +38,7 @@ function useProduction() {
             navigate('/productions')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
     const remove = async (id) => {
@@ -50,7 +47,7 @@ function useProduction() {
             navigate('/productions')
             setFlashMessage(data.message, 'success')
         } catch (error) {
-            setFlashMessage(error.response.data.message, 'danger')
+            errorHandler(error, setFlashMessage)
         }
     }
 
