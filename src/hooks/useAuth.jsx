@@ -37,6 +37,15 @@ function useAuth() {
             errorHandler(error, setFlashMessage)
         }
     }
+    const passReset = async (code, password) => {
+        try {
+            const data = await api.post('/auth/password-reset', { code, password }).then(res => res.data)
+            navigate('/')
+            setFlashMessage(data.message, 'success')
+        } catch (error) {
+            errorHandler(error, setFlashMessage)
+        }
+    }
     const updatePass = async (password, newPassword) => {
         try {
             const data = await api.patch('/auth/password-update', { password, newPassword }).then(res => res.data)
@@ -57,6 +66,7 @@ function useAuth() {
         register,
         recovery,
         updatePass,
+        passReset,
         logout,
     }
 }

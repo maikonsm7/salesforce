@@ -26,6 +26,7 @@ export const Nav = () => {
 
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/clients"><i className="bi bi-people me-2"></i>Clientes</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/productions"><i className="bi bi-journal-check me-2"></i>Produções</NavLink></li>
+          <li className="nav-item"><NavLink className="nav-link navbar-link" to="/grant-dates"><i className="bi bi-calendar-date me-2"></i>Data de Concessão</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/dashboard"><i className="bi bi-speedometer2 me-2"></i>Dashboard</NavLink></li>
 
           <h6 className="mt-4" style={{ color: '#616d77' }}>

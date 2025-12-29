@@ -21,7 +21,13 @@ import { CreateProduction } from './pages/production/CreateProduction'
 import { UpdateProduction } from './pages/production/UpdateProduction'
 import { DeleteProduction } from './pages/production/DeleteProduction'
 import { Production } from './pages/production/Production'
+import { GrantDates } from './pages/grant-date/GrantDates'
+import { GrantDate } from './pages/grant-date/GrantDate'
+import { CreateGrantDate } from './pages/grant-date/CreateGrantDate'
+import { UpdateGrantDate } from './pages/grant-date/UpdateGrantDate'
+import { DeleteGrantDate } from './pages/grant-date/DeleteGrantDate'
 import { UpdatePassword } from './pages/auth/UpdatePassword'
+import { PasswordReset } from './pages/auth/PasswordReset'
 
 function App() {
   return (
@@ -47,6 +53,11 @@ function App() {
                 <Route path='/productions/create' element={<CreateProduction />} />
                 <Route path='/productions/update/:id' element={<UpdateProduction />} />
                 <Route path='/productions/delete/:id' element={<DeleteProduction />} />
+                <Route path='/grant-dates' element={<GrantDates />} />
+                <Route path='/grant-dates/:id' element={<GrantDate />} />
+                <Route path='/grant-dates/create' element={<CreateGrantDate />} />
+                <Route path='/grant-dates/update/:id' element={<UpdateGrantDate />} />
+                <Route path='/grant-dates/delete/:id' element={<DeleteGrantDate />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/profile/password-update' element={<UpdatePassword />} />
               </Route>
@@ -56,6 +67,7 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/recovery' element={<Recovery />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/password-reset' element={<PasswordReset />} />
 
           </Routes>
         </AuthContextProvider>
