@@ -8,6 +8,7 @@ export const CreateProduction = () => {
     const [clients, setClients] = useState([])
     const [production, setProduction] = useState({})
     const [consignado, setConsignado] = useState('')
+    const [parcelado, setParcelado] = useState('')
     const [loading, setLoading] = useState(false)
     const { getAll: getAllClients } = useClient()
     const { create } = useProduction()
@@ -25,7 +26,7 @@ export const CreateProduction = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
-        await create({...production, consignado})
+        await create({...production, consignado, parcelado})
         setLoading(false)
     }
 
@@ -66,6 +67,23 @@ export const CreateProduction = () => {
                             </div>
                             <div className="col">
                                 <div className="row">
+                                    <label htmlFor="parcelado" className="col col-form-label">Créd. Parcel.</label>
+                                    <div className="col-sm-6">
+                                        <MaskedMoney 
+                                        className={"form-control"} 
+                                        id={"parcelado"} 
+                                        name={"parcelado"} 
+                                        value={parcelado} 
+                                        onChange={setParcelado} 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="row">
                                     <label htmlFor="conta" className="col col-form-label pe-0">Abert. de Conta</label>
                                     <div className="col-sm-6">
                                         <input
@@ -79,9 +97,6 @@ export const CreateProduction = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="row">
                             <div className="col">
                                 <div className="row">
                                     <label htmlFor="cartao" className="col col-form-label">Cartão</label>
@@ -97,6 +112,9 @@ export const CreateProduction = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="row">
                             <div className="col">
                                 <div className="row">
                                     <label htmlFor="lime" className="col col-form-label">Lime</label>
@@ -112,9 +130,6 @@ export const CreateProduction = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="row">
                             <div className="col">
                                 <div className="row">
                                     <label htmlFor="chess" className="col col-form-label pe-0">Cheque Espec.</label>
@@ -130,6 +145,9 @@ export const CreateProduction = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="row">
                             <div className="col">
                                 <div className="row">
                                     <label htmlFor="microsseguro" className="col col-form-label">Microsseguro</label>
@@ -140,6 +158,21 @@ export const CreateProduction = () => {
                                             id="microsseguro"
                                             name="microsseguro"
                                             value={production.microsseguro || ''}
+                                            onChange={handleProduction}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="row">
+                                    <label htmlFor="consorcio" className="col col-form-label pe-0">Consórcio</label>
+                                    <div className="col-sm-6">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="consorcio"
+                                            name="consorcio"
+                                            value={production.consorcio || ''}
                                             onChange={handleProduction}
                                         />
                                     </div>

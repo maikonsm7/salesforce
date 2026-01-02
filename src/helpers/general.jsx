@@ -1,23 +1,26 @@
 const cleanString = txt => txt.replace(/[^a-zA-Z0-9]/g, '')
 
 const dateHour = timeStamp => new Date(timeStamp).toLocaleString().replace(',', ' -')
-const dateFormat = timeStamp => new Date(timeStamp).toLocaleDateString('pt-BR')
+const dateFormat = timeStamp => new Date(timeStamp).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 const dateForInput = timeStamp => new Date(timeStamp).toISOString().split('T')[0]
 const releaseDate = timeStamp => {
   const date = new Date(timeStamp)
   date.setDate(date.getDate() + 90)
   return date.toLocaleDateString('pt-BR')
 }
+const convertToReal = value => {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+}
 
 const firstLastName = txt => {
-    const nameArray = txt.split(' ')
-    const firstName = nameArray[0]
-    const lastName = nameArray.length > 1 ? nameArray.pop() : '';
-    return `${firstName} ${lastName}`
+  const nameArray = txt.split(' ')
+  const firstName = nameArray[0]
+  const lastName = nameArray.length > 1 ? nameArray.pop() : '';
+  return `${firstName} ${lastName}`
 }
 
 const applyMask = (value, pattern) => {
-  if(!value){
+  if (!value) {
     return ''
   }
   const cleanValue = value.replace(/\D/g, '');
@@ -36,4 +39,13 @@ const applyMask = (value, pattern) => {
   return maskedValue;
 }
 
-export { cleanString, dateHour, firstLastName, applyMask, dateFormat, dateForInput, releaseDate }
+export {
+  cleanString,
+  dateHour,
+  convertToReal,
+  firstLastName,
+  applyMask,
+  dateFormat,
+  dateForInput,
+  releaseDate
+}

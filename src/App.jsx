@@ -28,6 +28,11 @@ import { UpdateGrantDate } from './pages/grant-date/UpdateGrantDate'
 import { DeleteGrantDate } from './pages/grant-date/DeleteGrantDate'
 import { UpdatePassword } from './pages/auth/UpdatePassword'
 import { PasswordReset } from './pages/auth/PasswordReset'
+import { Alerts } from './pages/alert/Alerts'
+import { Alert } from './pages/alert/Alert'
+import { CreateAlert } from './pages/alert/CreateAlert'
+import { UpdateAlert } from './pages/alert/UpdateAlert'
+import { DeleteAlert } from './pages/alert/DeleteAlert'
 
 function App() {
   return (
@@ -58,6 +63,11 @@ function App() {
                 <Route path='/grant-dates/create' element={<CreateGrantDate />} />
                 <Route path='/grant-dates/update/:id' element={<UpdateGrantDate />} />
                 <Route path='/grant-dates/delete/:id' element={<DeleteGrantDate />} />
+                <Route path='/alerts' element={<Alerts />} />
+                <Route path='/alerts/:id' element={<Alert />} />
+                <Route path='/alerts/create' element={<CreateAlert />} />
+                <Route path='/alerts/update/:id' element={<UpdateAlert />} />
+                <Route path='/alerts/delete/:id' element={<DeleteAlert />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/profile/password-update' element={<UpdatePassword />} />
               </Route>

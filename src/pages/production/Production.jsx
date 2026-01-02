@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router"
 import useProduction from "../../hooks/useProduction"
 import useAuth from "../../hooks/useAuth"
-import { dateHour } from "../../helpers/general"
+import { dateHour, convertToReal } from "../../helpers/general"
 
 export const Production = () => {
     const [production, setProduction] = useState({})
@@ -44,15 +44,17 @@ export const Production = () => {
 
                             <div className="row row-cols-1 row-cols-md-2 g-4">
                                 <div className="col">
-                                    <p><b className="me-2">Empréstimo Consignado:</b> {production.consignado}</p>
+                                    <p><b className="me-2">Emp. Consignado:</b> {convertToReal(production.consignado)}</p>
                                     <p><b className="me-2">Abertura de conta:</b> {production.conta}</p>
-                                    <p><b className="me-2">Cartão de Cŕedito:</b> {production.cartao}</p>
+                                    <p><b className="me-2">Lime:</b> {production.lime}</p>
+                                    <p><b className="me-2">Microseguro:</b> {production.microsseguro}</p>
                                 </div>
 
                                 <div className="col">
-                                    <p><b className="me-2">Lime:</b> {production.lime}</p>
+                                    <p><b className="me-2">Créd. Parcelado:</b> {convertToReal(production.parcelado)}</p>
+                                    <p><b className="me-2">Cartão de Cŕedito:</b> {production.cartao}</p>
                                     <p><b className="me-2">Cheque Especial:</b> {production.chess}</p>
-                                    <p><b className="me-2">Microseguro:</b> {production.microsseguro}</p>
+                                    <p><b className="me-2">Consórcio:</b> {production.consorcio}</p>
                                 </div>
                             </div>
 
