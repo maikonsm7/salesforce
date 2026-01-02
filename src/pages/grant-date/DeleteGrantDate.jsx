@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router"
 import useGrantDate from "../../hooks/useGrantDate"
-import { dateFormat, releaseDate } from "../../helpers/general"
+import { dateFormat } from "../../helpers/general"
 
 export const DeleteGrantDate = () => {
     const [grantDate, setGrantDate] = useState({})
@@ -36,7 +36,7 @@ export const DeleteGrantDate = () => {
                                 <div className="card-body">
                                     <p><b className="me-2">Cliente:</b> {grantDate.client?.name || ''}</p>
                                     <p><b className="me-2">Data de concessão:</b> {dateFormat(grantDate.date)}</p>
-                                    <p><b className="me-2">Data de liberação:</b> {releaseDate(grantDate.date)}</p>
+                                    <p><b className="me-2">Data de liberação:</b> {dateFormat(grantDate.releaseDate)}</p>
                                 </div>
                             </div>
 

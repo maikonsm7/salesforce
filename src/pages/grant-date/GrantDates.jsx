@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import useGrantDate from "../../hooks/useGrantDate"
 import useAuth from "../../hooks/useAuth"
 import { Link } from "react-router"
-import { firstLastName, dateFormat, releaseDate } from "../../helpers/general"
+import { firstLastName, dateFormat } from "../../helpers/general"
 
 export const GrantDates = () => {
     const [grantDates, setGrantDates] = useState([])
@@ -53,7 +53,7 @@ export const GrantDates = () => {
                                                 <td>{grantDate.client.name}</td>
                                                 {['MASTER', 'ADMIN'].includes(user.role) && (<td>{firstLastName(grantDate.createdBy.name)}</td>)}
                                                 <td>{dateFormat(grantDate.date)}</td>
-                                                <td>{releaseDate(grantDate.date)}</td>
+                                                <td>{dateFormat(grantDate.releaseDate)}</td>
                                                 <td>
                                                     <div className="d-flex justify-content-around">
                                                         <Link className="nav-link" to={`/grant-dates/${grantDate.id}`}><i className="bi bi-eye"></i></Link>

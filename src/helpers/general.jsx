@@ -3,11 +3,7 @@ const cleanString = txt => txt.replace(/[^a-zA-Z0-9]/g, '')
 const dateHour = timeStamp => new Date(timeStamp).toLocaleString().replace(',', ' -')
 const dateFormat = timeStamp => new Date(timeStamp).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 const dateForInput = timeStamp => new Date(timeStamp).toISOString().split('T')[0]
-const releaseDate = timeStamp => {
-  const date = new Date(timeStamp)
-  date.setDate(date.getDate() + 90)
-  return date.toLocaleDateString('pt-BR')
-}
+
 const convertToReal = value => {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 }
@@ -47,5 +43,4 @@ export {
   applyMask,
   dateFormat,
   dateForInput,
-  releaseDate
 }

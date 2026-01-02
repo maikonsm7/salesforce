@@ -33,6 +33,7 @@ import { Alert } from './pages/alert/Alert'
 import { CreateAlert } from './pages/alert/CreateAlert'
 import { UpdateAlert } from './pages/alert/UpdateAlert'
 import { DeleteAlert } from './pages/alert/DeleteAlert'
+import { ClientBenefitReleased } from './pages/home/ClientBenefitReleased'
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route element={<PrivateLayout />}>
                 <Route path='/home' element={<Home />} />
+                <Route path='/client-benefit-released/:id' element={<ClientBenefitReleased />} />
                 <Route path='/users' element={<Users />} />
                 <Route path='/users/:id' element={<User />} />
                 <Route path='/users/update/:id' element={<UpdateUser />} />

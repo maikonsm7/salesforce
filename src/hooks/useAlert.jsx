@@ -31,6 +31,14 @@ function useAlert() {
             errorHandler(error, setFlashMessage)
         }
     }
+    const getBenefitsReleased = async () => {
+        try {
+            const data = await api.get('/grant-dates/benefits-released').then(res => res.data)
+            return data.benefitsReleased
+        } catch (error) {
+            errorHandler(error, setFlashMessage)
+        }
+    }
     const create = async (alert) => {
         try {
             const data = await api.post('/alerts', { ...alert }).then(res => res.data)
@@ -63,6 +71,7 @@ function useAlert() {
         getAll,
         getById,
         getTodayAlerts,
+        getBenefitsReleased,
         create,
         update,
         remove,

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router"
 import useGrantDate from "../../hooks/useGrantDate"
 import useAuth from "../../hooks/useAuth"
-import { dateFormat, releaseDate } from "../../helpers/general"
+import { dateFormat } from "../../helpers/general"
 
 export const GrantDate = () => {
     const [grantDate, setGrantDate] = useState({})
@@ -40,7 +40,7 @@ export const GrantDate = () => {
                                 <p><b className="me-2">Inserida por:</b> {grantDate.createdBy?.name || ''}</p>
                             </>)}
                             <p><b className="me-2">Data de Concessão:</b> {dateFormat(grantDate.date)}</p>
-                            <p><b className="me-2">Data de Liberação:</b> {releaseDate(grantDate.date)}</p>
+                            <p><b className="me-2">Data de Liberação:</b> {dateFormat(grantDate.releaseDate)}</p>
                         </div>
                     </div>
                 </>)}

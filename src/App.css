@@ -83,3 +83,12 @@ input[type="checkbox"]:focus {
 .justify{
   text-align: justify;
 }
+
+.released-benefit{
+  transition: none;
+}
+
+.released-benefit:hover{
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+}
