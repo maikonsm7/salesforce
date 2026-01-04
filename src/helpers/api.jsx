@@ -2,7 +2,7 @@ import axios from "axios"
 import useFlashMessage from "../hooks/useFlashMessage"
 
 const api = axios.create({
-    // baseURL: 'https://www.itacoatiaracei.com.br/api'
+    // baseURL: 'https://www.salesforce.maikonsm.com.br/api'
     baseURL: 'http://localhost:3000/api'
 })
 
