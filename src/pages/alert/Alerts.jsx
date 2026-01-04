@@ -39,6 +39,7 @@ export const Alerts = () => {
                                             <th scope="col">Item</th>
                                             <th scope="col">Cliente</th>
                                             <th scope="col">Data do alerta</th>
+                                            <th scope="col">Concluído?</th>
                                             <th scope="col" className="text-center">Opções</th>
                                         </tr>
                                     </thead>
@@ -48,10 +49,11 @@ export const Alerts = () => {
                                                 <td>{index + 1}</td>
                                                 <td>{alert.client.name}</td>
                                                 <td>{dateFormat(alert.date)}</td>
+                                                <td>{alert.completed ? (<span className="text-success">Sim</span>) : (<span className="text-danger">Não</span>)}</td>
                                                 <td>
                                                     <div className="d-flex justify-content-around">
                                                         <Link className="nav-link" to={`/alerts/${alert.id}`}><i className="bi bi-eye"></i></Link>
-                                                        <Link className="nav-link" to={`/alerts/update/${alert.id}`}><i className="bi bi-pencil"></i></Link>
+                                                        {alert.completed ? null : (<Link className="nav-link" to={`/alerts/update/${alert.id}`}><i className="bi bi-pencil"></i></Link>)}
                                                         <Link className="nav-link" to={`/alerts/delete/${alert.id}`}><i className="bi bi-trash"></i></Link>
                                                     </div>
                                                 </td>

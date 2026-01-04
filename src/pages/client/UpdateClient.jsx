@@ -8,7 +8,6 @@ export const UpdateClient = () => {
     const [name, setName] = useState("")
     const [cpf, setCpf] = useState("")
     const [phone, setPhone] = useState("")
-    const [observation, setObservation] = useState("")
     const [loading, setLoading] = useState(true)
     const { id } = useParams()
     const { update, getById } = useClient()
@@ -19,7 +18,6 @@ export const UpdateClient = () => {
             setName(data.name)
             setCpf(data.cpf)
             setPhone(data.phone)
-            setObservation(data.observation)
             setLoading(false)
         }
         loadData()
@@ -29,7 +27,7 @@ export const UpdateClient = () => {
         e.preventDefault()
         const cleanCpf = cleanString(cpf)
         const cleanPhone = cleanString(phone)
-        update({ name, cpf: cleanCpf, phone: cleanPhone, observation }, id)
+        update({ name, cpf: cleanCpf, phone: cleanPhone }, id)
     }
 
     return (
@@ -80,20 +78,6 @@ export const UpdateClient = () => {
                                 onChange={setPhone}
                             />
                             <label htmlFor="phone">Telefone</label>
-                        </div>
-
-                        <div className="form-floating">
-                            <textarea
-                                type="text"
-                                className="form-control"
-                                id="observation"
-                                name="observation"
-                                placeholder="observation"
-                                rows="3"
-                                value={observation}
-                                onChange={e => setObservation(e.target.value)}
-                            />
-                            <label htmlFor="observation">Observação</label>
                         </div>
 
                         <button className="btn btn-info w-100 mt-2" type="submit">Atualizar</button>

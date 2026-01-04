@@ -19,17 +19,15 @@ export const Nav = () => {
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/home"><i className="bi bi-house me-2"></i>Home</NavLink></li>
-
-          {['MASTER', 'ADMIN'].includes(user.role) && (
-            <li className="nav-item"><NavLink className="nav-link navbar-link" to="/users"><i className="bi bi-person me-2"></i>Usuários</NavLink></li>
-          )}
-
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/clients"><i className="bi bi-people me-2"></i>Clientes</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/productions"><i className="bi bi-journal-check me-2"></i>Produções</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link navbar-link" to="/grant-dates"><i className="bi bi-calendar-date me-2"></i>Data de Concessão</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link navbar-link" to="/alerts"><i className="bi bi-exclamation-triangle me-2"></i>Alertas</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link navbar-link" to="/dashboard"><i className="bi bi-speedometer2 me-2"></i>Dashboard</NavLink></li>
 
+          {['MASTER', 'ADMIN'].includes(user.role) && (<>
+            <li className="nav-item"><NavLink className="nav-link navbar-link" to="/users"><i className="bi bi-person me-2"></i>Usuários</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link navbar-link" to="/dashboard"><i className="bi bi-speedometer2 me-2"></i>Dashboard</NavLink></li>
+          </>)}
+          
           <h6 className="mt-4" style={{ color: '#616d77' }}>
             <span>MEU PERFIL</span>
           </h6>

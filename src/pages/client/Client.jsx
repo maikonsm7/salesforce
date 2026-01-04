@@ -36,7 +36,6 @@ export const Client = () => {
                                     <p><b className="me-2">Nome:</b> {client.name}</p>
                                     <p><b className="me-2">CPF:</b> {applyMask(client.cpf, "###.###.###-##")}</p>
                                     <p><b className="me-2">Telefone:</b> {applyMask(client.phone, "(##) #####-####")}</p>
-                                    <p><b className="me-2">Observações:</b> {client.observation}</p>
                                 </div>
                             </div>
                         </>

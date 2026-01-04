@@ -88,7 +88,7 @@ input[type="checkbox"]:focus {
   transition: none;
 }
 
-.released-benefit:hover{
+.card-alert:hover{
   cursor: pointer;
   border: 1px solid var(--primary-color);
 }

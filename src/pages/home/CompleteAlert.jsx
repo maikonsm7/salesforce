@@ -3,11 +3,11 @@ import { Link, useParams } from "react-router"
 import useAlert from "../../hooks/useAlert"
 import { dateFormat } from "../../helpers/general"
 
-export const Alert = () => {
+export const CompleteAlert = () => {
     const [alert, setAlert] = useState({})
     const [loading, setLoading] = useState(false)
     const { id } = useParams()
-    const { getById } = useAlert()
+    const { getById, completeAlert } = useAlert()
     useEffect(() => {
         const loadData = async () => {
             setLoading(true)
@@ -34,14 +34,17 @@ export const Alert = () => {
                         <div className="card-body">
                             <p><b className="me-2">Cliente:</b> {alert.client?.name || ''}</p>
                             <p><b className="me-2">Data do alerta:</b> {dateFormat(alert.date)}</p>
-                            <p><b className="me-2">Alerta concluído?</b> {alert.completed ? (<span className="text-success">Sim</span>) : (<span className="text-danger">Não</span>)}</p>
                             <p><b className="me-2">Descrição:</b> {alert.description}</p>
                         </div>
                     </div>
                 </>)}
 
-                <div className="mt-3 text-center">
-                    <Link className="link-info" to="/alerts">Voltar</Link>
+                <div className="mt-4 text-center">
+                    <p>O alerta acima foi tratado?</p>
+                    <button className="btn btn-info" onClick={() => completeAlert(id)}>Sim, concluir!</button>
+                    <div className="mt-4">
+                    <Link className="link-info" to="/home">Voltar</Link>
+                    </div>
                 </div>
 
             </div>

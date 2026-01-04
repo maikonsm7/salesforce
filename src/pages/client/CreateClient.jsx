@@ -8,7 +8,6 @@ export const CreateClient = () => {
     const [name, setName] = useState("")
     const [cpf, setCpf] = useState("")
     const [phone, setPhone] = useState("")
-    const [observation, setObservation] = useState("")
     const [loading, setLoading] = useState(false)
     const { create } = useClient()
 
@@ -17,7 +16,7 @@ export const CreateClient = () => {
         const cleanCpf = cleanString(cpf)
         const cleanPhone = cleanString(phone)
         setLoading(true)
-        await create({ name, cpf: cleanCpf, phone: cleanPhone, observation })
+        await create({ name, cpf: cleanCpf, phone: cleanPhone })
         setLoading(false)
     }
 
@@ -67,20 +66,6 @@ export const CreateClient = () => {
                         onChange={setPhone} 
                         />
                         <label htmlFor="phone">Telefone</label>
-                    </div>
-
-                    <div className="form-floating">
-                        <textarea 
-                        type="text" 
-                        className="form-control" 
-                        id="observation" 
-                        name="observation" 
-                        placeholder="observation"
-                        rows="3" 
-                        value={observation} 
-                        onChange={e => setObservation(e.target.value)} 
-                        />
-                        <label htmlFor="observation">Observação</label>
                     </div>
 
                     <button className="btn btn-info w-100 mt-2" type="submit">{loading ? 'Cadastrando...' : 'Cadastrar'}</button>

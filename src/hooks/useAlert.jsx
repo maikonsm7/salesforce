@@ -31,14 +31,6 @@ function useAlert() {
             errorHandler(error, setFlashMessage)
         }
     }
-    const getBenefitsReleased = async () => {
-        try {
-            const data = await api.get('/grant-dates/benefits-released').then(res => res.data)
-            return data.benefitsReleased
-        } catch (error) {
-            errorHandler(error, setFlashMessage)
-        }
-    }
     const create = async (alert) => {
         try {
             const data = await api.post('/alerts', { ...alert }).then(res => res.data)
@@ -52,6 +44,15 @@ function useAlert() {
         try {
             const data = await api.patch(`/alerts/${id}`, { ...alert }).then(res => res.data)
             navigate('/alerts')
+            setFlashMessage(data.message, 'success')
+        } catch (error) {
+            errorHandler(error, setFlashMessage)
+        }
+    }
+    const completeAlert = async (id) => {
+        try {
+            const data = await api.patch(`/alerts/complete/${id}`).then(res => res.data)
+            navigate('/home')
             setFlashMessage(data.message, 'success')
         } catch (error) {
             errorHandler(error, setFlashMessage)
@@ -71,9 +72,9 @@ function useAlert() {
         getAll,
         getById,
         getTodayAlerts,
-        getBenefitsReleased,
         create,
         update,
+        completeAlert,
         remove,
     }
 }
