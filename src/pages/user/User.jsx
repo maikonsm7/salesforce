@@ -20,12 +20,12 @@ export const User = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '730px' }}>
+            <div className="m-auto" style={{maxWidth: 730}}>
 
                 <h3 className="text-center fw-normal">Usuário</h3>
 
                 {loading ? (<p className="text-center mt-5">Carregando...</p>) : (<>
-                    <div className="card w-75 d-flex m-auto mt-4">
+                    <div className="card d-flex m-auto mt-4">
                         <div className="card-header">
                             Dados do Usuário
                         </div>

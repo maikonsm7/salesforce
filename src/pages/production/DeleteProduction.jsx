@@ -21,7 +21,7 @@ export const DeleteProduction = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '630px' }}>
+            <div className="m-auto" style={{ maxWidth: 730 }}>
 
                 <h3 className="text-center fw-normal pb-3">Deletar Produção</h3>
 
@@ -29,37 +29,37 @@ export const DeleteProduction = () => {
 
                     {production ? (
                         <>
-                            <div className="card d-flex m-auto mt-4">
-                        <div className="card-header">
-                            Dados da Produção
-                        </div>
-                        <div className="card-body">
-                            <p><b className="me-2">Cliente:</b> {production.client?.name || ''}</p>
-                            <p><b className="me-2">Data/Hora:</b> {dateHour(production.createdAt)}</p>
-                            <hr />
-
-                            <div className="row row-cols-1 row-cols-md-2 g-4">
-                                <div className="col">
-                                    <p><b className="me-2">Emp. Consignado:</b> {production.consignado}</p>
-                                    <p><b className="me-2">Abertura de conta:</b> {production.conta}</p>
-                                    <p><b className="me-2">Lime:</b> {production.lime}</p>
-                                    <p><b className="me-2">Microseguro:</b> {production.microsseguro}</p>
+                            <div className="card d-flex m-auto mt-2">
+                                <div className="card-header">
+                                    Dados da Produção
                                 </div>
+                                <div className="card-body">
+                                    <p><b className="me-2">Cliente:</b> {production.client?.name || ''}</p>
+                                    <p><b className="me-2">Data/Hora:</b> {dateHour(production.createdAt)}</p>
+                                    <hr />
 
-                                <div className="col">
-                                    <p><b className="me-2">Créd. Parcelado:</b> {production.parcelado}</p>
-                                    <p><b className="me-2">Cartão de Crédito:</b> {production.cartao}</p>
-                                    <p><b className="me-2">Cheque Especial:</b> {production.chess}</p>
-                                    <p><b className="me-2">Consórcio:</b> {production.consorcio}</p>
+                                    <div className="row row-cols-1 row-cols-md-2 g-4">
+                                        <div className="col">
+                                            <p><b className="me-2">Emp. Consignado:</b> {production.consignado}</p>
+                                            <p><b className="me-2">Abertura de conta:</b> {production.conta}</p>
+                                            <p><b className="me-2">Lime:</b> {production.lime}</p>
+                                            <p><b className="me-2">Microseguro:</b> {production.microsseguro}</p>
+                                        </div>
+
+                                        <div className="col">
+                                            <p><b className="me-2">Créd. Parcelado:</b> {production.parcelado}</p>
+                                            <p><b className="me-2">Cartão de Crédito:</b> {production.cartao}</p>
+                                            <p><b className="me-2">Cheque Especial:</b> {production.chess}</p>
+                                            <p><b className="me-2">Consórcio:</b> {production.consorcio}</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-
                             <div className="text-center mt-3">
-                            <p>Deseja realmente remover a produção acima?</p>
-                            <button className="btn btn-danger" onClick={() => remove(id)}>Remover Produção</button>
+                                <p>Deseja realmente remover a produção acima?</p>
+                                <button className="btn btn-danger" onClick={() => remove(id)}>Remover Produção</button>
                             </div>
                         </>
                     ) : (<>

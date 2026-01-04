@@ -28,16 +28,16 @@ export const Home = () => {
         <>
             <div>
 
-                <div className="text-center mt-3">
+                <div className="text-center">
                 <h3 className="fw-normal">{user.company.name || ''}</h3>
-                <span className="form-text">Bem vindo!</span>
+                {/* <span className="form-text">Bem vindo!</span> */}
                 </div>
 
                 {loading && (<p className="text-center mt-5">Carregando...</p>)}
 
                 {alerts && alerts.length > 0 && (<>
-                    <h5 className="text-info mt-4">Alertas</h5>
-                    <div className="row row-cols-1 row-cols-md-4 g-2 mt-1">
+                    <h5 className="text-info text-center mt-4">Alertas</h5>
+                    <div className="row row-cols-1 row-cols-md-4 g-2 mt-1 d-flex justify-content-center">
                         {alerts.map((alert) => (<>
                             <div key={alert.id} className="col">
                                 <div className="card h-100 card-alert" onClick={() => navigateToAlert(alert.id)}>

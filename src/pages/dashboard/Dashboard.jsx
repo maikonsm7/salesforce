@@ -71,7 +71,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '65%' }}>
+            <div className="m-auto" style={{maxWidth: 730}}>
                 <h3 className="text-center fw-normal mb-3">Dashboard</h3>
 
                 <div className="d-flex align-items-center">

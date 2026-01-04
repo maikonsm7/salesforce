@@ -4,7 +4,7 @@ export const Footer = () => {
     return(
         <>
         <footer>
-            <p className="mt-5 mb-3 text-body-secondary text-center">&copy; {currentYear} Sales Force</p>
+            <p className="mt-3 mb-3 text-body-secondary text-center">&copy; {currentYear} Sales Force</p>
         </footer>
         </>
     )

@@ -27,10 +27,10 @@ export const Register = () => {
     }
     return (
         <>
-            <main className="form-container m-auto mt-4">
+            <main className="form-container m-auto pb-0 pt-0">
                 <Message />
                 <form onSubmit={handleSubmit}>
-                    <h3 className='text-center'>Cadastro</h3>
+                    <h3 className='text-center mt-2 pb-2'>Cadastro</h3>
 
                     <div className="form-floating">
                         <input 
@@ -60,7 +60,8 @@ export const Register = () => {
                         <MaskedInput
                         type="text" 
                         name="cnpj"
-                        className="form-control" 
+                        className="form-control"
+                        placeholder="cnpj" 
                         maxLength={18} 
                         mask="##.###.###/####-##" 
                         value={cnpj} 
@@ -73,6 +74,7 @@ export const Register = () => {
                         <MaskedInput
                         type="text" 
                         name="phone"
+                        placeholder="phone"
                         className="form-control" 
                         maxLength={15} 
                         mask="(##) #####-####" 
@@ -107,7 +109,7 @@ export const Register = () => {
                             <i className={`bi ${showpass ? "bi-eye-slash" : "bi-eye"}`}></i>
                         </span>
                     </div>
-                    <p className={`form-text ${password.length > 5 ? 'text-success' : 'text-danger'}`}><i className={`bi bi-${password.length > 5 ? 'check' : 'x'}`}></i> No mínimo 6 caracteres</p>
+                    <p className={`form-text m-2 ${password.length > 5 ? 'text-success' : 'text-danger'}`}><i className={`bi bi-${password.length > 5 ? 'check' : 'x'}`}></i> No mínimo 6 caracteres</p>
                     <button className="btn btn-info w-100 py-2" type="submit">
                         {loading ? 'Enviando...': 'Enviar'}
                     </button>

@@ -20,7 +20,7 @@ export const CompleteAlert = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '630px' }}>
+            <div className="m-auto" style={{maxWidth: 730}}>
 
                 <h3 className="text-center fw-normal">Dados do Alerta</h3>
 

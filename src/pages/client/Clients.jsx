@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router"
 import useClient from "../../hooks/useClient"
 import { applyMask } from "../../helpers/general"
+import useAuth from "../../hooks/useAuth"
 
 export const Clients = () => {
     const [clients, setClients] = useState([])
@@ -9,6 +10,7 @@ export const Clients = () => {
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false)
     const { getAll } = useClient()
+    const { user } = useAuth()
 
     useEffect(() => {
         const loadData = async () => {
@@ -29,7 +31,7 @@ export const Clients = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '730px' }}>
+            <div className="m-auto" style={{maxWidth: 730}}>
 
                 <h3 className="text-center fw-normal">Clientes</h3>
 
@@ -65,7 +67,7 @@ export const Clients = () => {
                                                     <td>
                                                         <div className="d-flex justify-content-around">
                                                             <Link className="nav-link" to={`/clients/${client.id}`}><i className="bi bi-eye"></i></Link>
-                                                            <Link className="nav-link" to={`/clients/update/${client.id}`}><i className="bi bi-pencil"></i></Link>
+                                                            {['MASTER', 'ADMIN'].includes(user.role) && (<Link className="nav-link" to={`/clients/update/${client.id}`}><i className="bi bi-pencil"></i></Link>)}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -79,7 +81,7 @@ export const Clients = () => {
                                                     <td>
                                                         <div className="d-flex justify-content-around">
                                                             <Link className="nav-link" to={`/clients/${client.id}`}><i className="bi bi-eye"></i></Link>
-                                                            <Link className="nav-link" to={`/clients/update/${client.id}`}><i className="bi bi-pencil"></i></Link>
+                                                            {['MASTER', 'ADMIN'].includes(user.role) && (<Link className="nav-link" to={`/clients/update/${client.id}`}><i className="bi bi-pencil"></i></Link>)}
                                                         </div>
                                                     </td>
                                                 </tr>

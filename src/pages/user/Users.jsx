@@ -19,7 +19,7 @@ export const Users = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '730px' }}>
+            <div className="m-auto" style={{maxWidth: 930}}>
 
                 <h3 className="text-center fw-normal">Usuários</h3>
 

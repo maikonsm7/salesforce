@@ -20,7 +20,7 @@ export const Client = () => {
 
     return (
         <>
-            <div className="m-auto" style={{ maxWidth: '530px' }}>
+            <div className="m-auto" style={{maxWidth: 730}}>
 
                 <h3 className="text-center fw-normal">Cliente</h3>
 
