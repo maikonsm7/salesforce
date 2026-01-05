@@ -23,7 +23,6 @@ function useAuth() {
     const register = async (enterprise) => {
         try {
             const data = await api.post('/auth/register', { ...enterprise }).then(res => res.data)
-            navigate('/')
             setFlashMessage(data.message, 'success')
         } catch (error) {
             errorHandler(error, setFlashMessage)
